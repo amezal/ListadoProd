@@ -2,6 +2,7 @@ package ni.edu.uca.listadoprod.dataadapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ni.edu.uca.listadoprod.databinding.ActivityMainBinding
@@ -39,6 +40,18 @@ class ProductoAdapter(var listProd: MutableList<Producto>, val parent: ActivityM
         notifyItemRemoved(position)
     }
 
+    fun guardarProducto(position: Int) {
+        val id: Int = parent.etID.text.toString().toInt()
+        val nombre: String = parent.etNombreProd.text.toString()
+        val precio: Double = parent.etPrecio.text.toString().toDouble()
+        val producto = Producto(id, nombre, precio)
+        listProd[position] = producto
+        notifyItemChanged(position)
+        parent.etID.text.clear()
+        parent.etNombreProd.text.clear()
+        parent.etPrecio.text.clear()
+    }
+
     override fun onBindViewHolder(holder: ProductoHolder, position: Int) {
         val producto = listProd[position]
         with(holder.binding) {
@@ -48,10 +61,18 @@ class ProductoAdapter(var listProd: MutableList<Producto>, val parent: ActivityM
 
             cvProducto.setOnClickListener() {
                 cargarDatos(producto)
+                btnGuardar.visibility = View.VISIBLE
+                btnEliminar.visibility = View.INVISIBLE
             }
 
             btnEliminar.setOnClickListener() {
                 eliminarProducto(position)
+            }
+
+            btnGuardar.setOnClickListener() {
+                guardarProducto(position)
+                btnGuardar.visibility = View.INVISIBLE
+                btnEliminar.visibility = View.VISIBLE
             }
         }
     }

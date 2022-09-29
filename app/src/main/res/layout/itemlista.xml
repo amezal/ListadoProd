@@ -60,6 +60,19 @@
             android:layout_marginLeft="150dp"
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/delete" />
+            android:src="@drawable/delete"
+            />
+
+        <ImageButton
+            android:id="@+id/btnGuardar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/save"
+            android:visibility="invisible"
+            />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
