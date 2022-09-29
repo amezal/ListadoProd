@@ -11,7 +11,7 @@ import ni.edu.uca.listadoprod.dataclass.Producto
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var listaProd = ArrayList<Producto>()
+    private lateinit var productoAdapter: ProductoAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         iniciar()
     }
 
-    private fun limpiar() {
+    fun limpiar() {
         with(binding) {
-            etID.setText("")
-            etNombreProd.setText("")
-            etPrecio.setText("")
+            etID.text.clear()
+            etNombreProd.text.clear()
+            etPrecio.text.clear()
             etID.requestFocus()
         }
     }
@@ -35,18 +35,19 @@ class MainActivity : AppCompatActivity() {
                 val nombre: String = etNombreProd.text.toString()
                 val precio: Double = etPrecio.text.toString().toDouble()
                 val prod = Producto(id, nombre, precio)
-                listaProd.add(prod)
+                productoAdapter.addProducto(prod)
             } catch (ex: Exception) {
                 Toast.makeText(this@MainActivity, "Error: ${ex.toString()} ",
                     Toast.LENGTH_LONG).show()
             }
-            rcvLista.layoutManager = LinearLayoutManager(this@MainActivity)
-            rcvLista.adapter = ProductoAdapter(listaProd)
             limpiar()
         }
     }
 
     private fun iniciar() {
+        productoAdapter = ProductoAdapter(mutableListOf(), binding)
+        binding.rcvLista.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.rcvLista.adapter = productoAdapter
         binding.btnAgregar.setOnClickListener {
             agregarProd()
         }
