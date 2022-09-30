@@ -10,7 +10,7 @@
         android:id="@+id/cvProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/purple_700"
+        app:cardBackgroundColor="@color/purple_500"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,9 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="0"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            />
 
         <TextView
             android:id="@+id/tvNombreProd"
@@ -40,7 +42,8 @@
             android:nextFocusLeft="@id/tvCodProd"
             android:text="Nombre"
             android:textSize="25sp"
-            android:visibility="visible" />
+            android:textColor="@color/white"
+            />
 
         <TextView
             android:id="@+id/tvPrecioProd"
@@ -50,7 +53,9 @@
             android:layout_marginTop="70dp"
             android:layout_marginRight="80dp"
             android:text="0.00"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
 
         <ImageButton
             android:id="@+id/btnEliminar"
@@ -61,6 +66,8 @@
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/delete"
+            app:tint="@color/black"
+            android:backgroundTint="@color/purple_200"
             />
 
         <ImageButton
@@ -73,6 +80,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/save"
             android:visibility="invisible"
+            app:tint="@color/black"
+            android:backgroundTint="@color/purple_200"
             />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
